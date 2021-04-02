@@ -9,3 +9,4 @@ adafruit-circuitpython-portalbase
 adafruit-circuitpython-dotstar
 adafruit-circuitpython-requests
 adafruit-circuitpython-simpleio
+adafruit-circuitpython-minimqtt
