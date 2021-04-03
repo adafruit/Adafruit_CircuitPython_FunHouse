@@ -3,7 +3,6 @@
 #
 # SPDX-License-Identifier: MIT
 import time
-import random
 import board
 import adafruit_dps310
 import adafruit_ahtx0
@@ -13,11 +12,7 @@ i2c = board.I2C()
 dps310 = adafruit_dps310.DPS310(i2c)
 aht20 = adafruit_ahtx0.AHTx0(i2c)
 
-funhouse = FunHouse(
-    default_bg=0x0F0F00,
-    scale=2,
-)
-
+funhouse = FunHouse(default_bg=None)
 funhouse.peripherals.set_dotstars(0x800000, 0x808000, 0x008000, 0x000080, 0x800080)
 
 # pylint: disable=unused-argument
@@ -63,8 +58,8 @@ last_pir = None
 while True:
     funhouse.network.mqtt_loop()
 
-    funhouse.set_text("Temp %0.1F" % dps310.temperature, temp_label)
-    funhouse.set_text("Pres %d" % dps310.pressure, pres_label)
+    print("Temp %0.1F" % dps310.temperature)
+    print("Pres %d" % dps310.pressure)
 
     # every 10 seconds, write temp/hum/press
     if (time.monotonic() - sensorwrite_timestamp) > 10:

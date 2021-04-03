@@ -33,6 +33,7 @@ autodoc_mock_imports = [
     "socketpool",
     "secrets",
     "analogio",
+    "touchio",
 ]
 
 intersphinx_mapping = {
