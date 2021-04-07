@@ -110,8 +110,8 @@ class Network(NetworkBase):
         try:
             if self._mqtt_client is not None:
                 self._mqtt_client.loop()
-        except MQTT.MMQTTException:
-            pass
+        except MQTT.MMQTTException as err:
+            print("MMQTTException: {0}".format(err))
 
     @property
     def on_mqtt_connect(self):
