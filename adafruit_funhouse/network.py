@@ -108,7 +108,8 @@ class Network(NetworkBase):
     def mqtt_loop(self):
         """Run the MQTT Loop"""
         try:
-            self._mqtt_client.loop
+            if self._mqtt_client is not None:
+                self._mqtt_client.loop()
         except MQTT.MMQTTException:
             pass
 
