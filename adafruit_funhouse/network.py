@@ -65,7 +65,6 @@ class Network(NetworkBase):
         )
         self._mqtt_client = None
         self.mqtt_connect = None
-        self.mqtt_loop = None
         self.mqtt_publish = None
 
     def init_io_mqtt(self):
@@ -95,7 +94,6 @@ class Network(NetworkBase):
         if use_io:
             self._mqtt_client = IO_MQTT(self._mqtt_client)
         self.mqtt_connect = self._mqtt_client.connect
-        self.mqtt_loop = self._mqtt_client.loop
         self.mqtt_publish = self._mqtt_client.publish
 
         return self._mqtt_client
@@ -106,6 +104,14 @@ class Network(NetworkBase):
         if self._mqtt_client is not None:
             return self._mqtt_client
         raise RuntimeError("Please initialize MQTT before using")
+
+    def mqtt_loop(self):
+        """Run the MQTT Loop"""
+        try:
+            if self._mqtt_client is not None:
+                self._mqtt_client.loop()
+        except MQTT.MMQTTException as err:
+            print("MMQTTException: {0}".format(err))
 
     @property
     def on_mqtt_connect(self):
