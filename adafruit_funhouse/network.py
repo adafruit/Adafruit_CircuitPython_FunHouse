@@ -65,7 +65,7 @@ class Network(NetworkBase):
         )
         self._mqtt_client = None
         self.mqtt_connect = None
-        self.mqtt_publish = None
+        self._mqtt_publish = None
 
     def init_io_mqtt(self):
         """Initialize MQTT for Adafruit IO"""
@@ -101,7 +101,7 @@ class Network(NetworkBase):
         if use_io:
             self._mqtt_client = IO_MQTT(self._mqtt_client)
         self.mqtt_connect = self._mqtt_client.connect
-        self.mqtt_publish = self._mqtt_client.publish
+        self._mqtt_publish = self._mqtt_client.publish
 
         return self._mqtt_client
 
@@ -119,6 +119,14 @@ class Network(NetworkBase):
                 self._mqtt_client.loop()
         except MQTT.MMQTTException as err:
             print("MMQTTException: {0}".format(err))
+
+    def mqtt_publish(self, *args, **kwargs):
+        """Publish to MQTT"""
+        try:
+            if self._mqtt_client is not None:
+                self._mqtt_publish(*args, **kwargs)
+        except OSError as err:
+            print("OSError: {0}".format(err))
 
     @property
     def on_mqtt_connect(self):
@@ -147,8 +155,7 @@ class Network(NetworkBase):
 
     @on_mqtt_disconnect.setter
     def on_mqtt_disconnect(self, value):
-        self._get_mqtt_client()
-        self._mqtt_client.on_disconnect = value
+        self._get_mqtt_client().on_disconnect = value
 
     @property
     def on_mqtt_subscribe(self):
@@ -162,8 +169,21 @@ class Network(NetworkBase):
 
     @on_mqtt_subscribe.setter
     def on_mqtt_subscribe(self, value):
-        self._get_mqtt_client()
-        self._mqtt_client.on_subscribe = value
+        self._get_mqtt_client().on_subscribe = value
+
+    @property
+    def on_mqtt_unsubscribe(self):
+        """
+        Get or Set the MQTT Unsubscribe Handler
+
+        """
+        if self._mqtt_client:
+            return self._mqtt_client.on_unsubscribe
+        return None
+
+    @on_mqtt_unsubscribe.setter
+    def on_mqtt_unsubscribe(self, value):
+        self._get_mqtt_client().on_unsubscribe = value
 
     @property
     def on_mqtt_message(self):
@@ -177,8 +197,7 @@ class Network(NetworkBase):
 
     @on_mqtt_message.setter
     def on_mqtt_message(self, value):
-        self._get_mqtt_client()
-        self._mqtt_client.on_message = value
+        self._get_mqtt_client().on_message = value
 
     @property
     def enabled(self):
