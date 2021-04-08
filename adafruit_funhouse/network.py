@@ -77,15 +77,13 @@ class Network(NetworkBase):
                 "Adafruit IO secrets are kept in secrets.py, please add them there!\n\n"
             ) from KeyError
 
-        return self.init_mqtt(
-            IO_MQTT_BROKER, MQTT.MQTT_TLS_PORT, aio_username, aio_key, True
-        )
+        return self.init_mqtt(IO_MQTT_BROKER, 8883, aio_username, aio_key, True)
 
     # pylint: disable=too-many-arguments
     def init_mqtt(
         self,
         broker,
-        port=MQTT.MQTT_TLS_PORT,
+        port=8883,
         username=None,
         password=None,
         use_io=False,
