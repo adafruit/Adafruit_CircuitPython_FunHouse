@@ -65,7 +65,6 @@ class Network(NetworkBase):
         )
         self._mqtt_client = None
         self.mqtt_connect = None
-        self._mqtt_publish = None
 
     def init_io_mqtt(self):
         """Initialize MQTT for Adafruit IO"""
@@ -101,7 +100,6 @@ class Network(NetworkBase):
         if use_io:
             self._mqtt_client = IO_MQTT(self._mqtt_client)
         self.mqtt_connect = self._mqtt_client.connect
-        self._mqtt_publish = self._mqtt_client.publish
 
         return self._mqtt_client
 
@@ -112,19 +110,21 @@ class Network(NetworkBase):
             return self._mqtt_client
         raise RuntimeError("Please initialize MQTT before using")
 
-    def mqtt_loop(self):
+    def mqtt_loop(self, *args, **kwargs):
         """Run the MQTT Loop"""
         try:
             if self._mqtt_client is not None:
-                self._mqtt_client.loop()
+                self._mqtt_client.loop(*args, **kwargs)
         except MQTT.MMQTTException as err:
             print("MMQTTException: {0}".format(err))
+        except OSError as err:
+            print("OSError: {0}".format(err))
 
     def mqtt_publish(self, *args, **kwargs):
         """Publish to MQTT"""
         try:
             if self._mqtt_client is not None:
-                self._mqtt_publish(*args, **kwargs)
+                self._mqtt_client.publish(*args, **kwargs)
         except OSError as err:
             print("OSError: {0}".format(err))
 
