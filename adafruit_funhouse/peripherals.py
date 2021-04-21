@@ -32,6 +32,8 @@ from digitalio import DigitalInOut, Direction, Pull
 from analogio import AnalogIn
 import touchio
 import simpleio
+import adafruit_dps310
+import adafruit_ahtx0
 import adafruit_dotstar
 
 __version__ = "0.0.0-auto.0"
@@ -73,6 +75,10 @@ class Peripherals:
         ):
             cap = touchio.TouchIn(pin)
             self._ctp.append(cap)
+
+        self.i2c = board.I2C()
+        self._dps310 = adafruit_dps310.DPS310(self.i2c)
+        self._aht20 = adafruit_ahtx0.AHTx0(self.i2c)
 
         # LED
         self._led = DigitalInOut(board.LED)
@@ -202,6 +208,27 @@ class Peripherals:
 
         """
         return self._light.value
+
+    @property
+    def temperature(self):
+        """
+        Return the temperature
+        """
+        return self._aht20.temperature
+
+    @property
+    def relative_humidity(self):
+        """
+        Return the relative humidity
+        """
+        return self._aht20.relative_humidity
+
+    @property
+    def pressure(self):
+        """
+        Return the temperature
+        """
+        return self._dps310.pressure
 
     @property
     def led(self):

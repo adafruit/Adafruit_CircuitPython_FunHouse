@@ -4,18 +4,12 @@
 # SPDX-License-Identifier: Unlicense
 import board
 from digitalio import DigitalInOut, Direction, Pull
-import adafruit_dps310
-import adafruit_ahtx0
 from adafruit_funhouse import FunHouse
 
 funhouse = FunHouse(
     default_bg=0x0F0F00,
     scale=2,
 )
-
-i2c = board.I2C()
-dps310 = adafruit_dps310.DPS310(i2c)
-aht20 = adafruit_ahtx0.AHTx0(i2c)
 
 funhouse.peripherals.set_dotstars(0x800000, 0x808000, 0x008000, 0x000080, 0x800080)
 
@@ -71,10 +65,10 @@ pres_label = funhouse.add_text(
 funhouse.display.show(funhouse.splash)
 
 while True:
-    funhouse.set_text("Temp %0.1F" % dps310.temperature, temp_label)
-    funhouse.set_text("Pres %d" % dps310.pressure, pres_label)
+    funhouse.set_text("Temp %0.1F" % funhouse.peripherals.temperature, temp_label)
+    funhouse.set_text("Pres %d" % funhouse.peripherals.pressure, pres_label)
 
-    print(aht20.temperature, aht20.relative_humidity)
+    print(funhouse.peripherals.temperature, funhouse.peripherals.relative_humidity)
     set_label_color(funhouse.peripherals.captouch6, onoff_label, 0x00FF00)
     set_label_color(funhouse.peripherals.captouch7, capleft_label, 0x00FF00)
     set_label_color(funhouse.peripherals.captouch8, capright_label, 0x00FF00)

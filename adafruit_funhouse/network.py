@@ -104,7 +104,6 @@ class Network(NetworkBase):
     # pylint: enable=too-many-arguments
 
     def _get_mqtt_client(self):
-        print(self._mqtt_client)
         if self._mqtt_client is not None:
             return self._mqtt_client
         raise RuntimeError("Please initialize MQTT before using")
