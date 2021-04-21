@@ -10,3 +10,5 @@ adafruit-circuitpython-dotstar
 adafruit-circuitpython-requests
 adafruit-circuitpython-simpleio
 adafruit-circuitpython-minimqtt
+adafruit-circuitpython-dps310
+adafruit-circuitpython-ahtx0
