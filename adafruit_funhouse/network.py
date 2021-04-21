@@ -31,7 +31,7 @@ import ssl
 import adafruit_minimqtt.adafruit_minimqtt as MQTT
 from adafruit_io.adafruit_io import IO_MQTT
 from adafruit_portalbase.network import NetworkBase
-from adafruit_funhouse.wifi_module import WiFi
+from adafruit_portalbase.wifi_esp32s2 import WiFi
 
 __version__ = "0.0.0-auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FunHouse.git"
@@ -59,7 +59,7 @@ class Network(NetworkBase):
         debug=False,
     ):
         super().__init__(
-            WiFi(status_dotstar=status_dotstar),
+            WiFi(status_led=status_dotstar),
             extract_values=extract_values,
             debug=debug,
         )

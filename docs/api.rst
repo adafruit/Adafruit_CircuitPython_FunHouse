@@ -15,6 +15,3 @@
 
 .. automodule:: adafruit_funhouse.peripherals
    :members:
-
-.. automodule:: adafruit_funhouse.wifi_module
-   :members:
