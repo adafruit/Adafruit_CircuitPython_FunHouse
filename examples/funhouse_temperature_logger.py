@@ -16,12 +16,15 @@ funhouse = FunHouse(default_bg=None)
 
 DELAY = 180
 FEED = "temperature"
-TEMPERATURE_OFFSET = 3 # Degrees C to adjust the temperature to compensate for board produced heat
+TEMPERATURE_OFFSET = (
+    3  # Degrees C to adjust the temperature to compensate for board produced heat
+)
 
 # Turn things off
 funhouse.peripherals.dotstars.fill(0)
 funhouse.display.brightness = 0
 funhouse.network.enabled = False
+
 
 def log_data():
     print("Logging Temperature")
@@ -34,6 +37,7 @@ def log_data():
     funhouse.push_to_io(FEED, funhouse.peripherals.temperature - TEMPERATURE_OFFSET)
     # Turn off WiFi
     funhouse.network.enabled = False
+
 
 while True:
     log_data()
