@@ -215,15 +215,7 @@ class Peripherals:
         Return the temperature in degrees Celcius
         """
         return self._aht20.temperature
-
-    @property
-    def temperature_alt(self):
-        """
-        Return the temperature in degrees Celcius
-        using DPS310 sensor
-        """
-        return self._dps310.temperature
-    
+        
     @property
     def relative_humidity(self):
         """
