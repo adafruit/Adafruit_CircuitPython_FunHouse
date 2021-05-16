@@ -212,21 +212,21 @@ class Peripherals:
     @property
     def temperature(self):
         """
-        Return the temperature
+        Return the temperature in degrees Celcius
         """
         return self._aht20.temperature
-
+        
     @property
     def relative_humidity(self):
         """
-        Return the relative humidity
+        Return the relative humidity as a percentage (0 - 100)
         """
         return self._aht20.relative_humidity
 
     @property
     def pressure(self):
         """
-        Return the temperature
+        Return the barometric pressure in hPa, or equivalently in mBar
         """
         return self._dps310.pressure
 
