@@ -74,6 +74,7 @@ class Peripherals:
             board.CAP9,
         ):
             cap = touchio.TouchIn(pin)
+            cap.threshold = 20000
             self._ctp.append(cap)
 
         self.i2c = board.I2C()
@@ -180,8 +181,7 @@ class Peripherals:
         val = 0
         cap_map = b"\x01\x03\x02\x05\x04\x0c\x08\x18\x10"
         for cap in range(5):
-            raw = self._ctp[cap + 3].raw_value
-            if raw > 15000:
+            if self._ctp[cap + 3].value:
                 val += 1 << (cap)
         for i, pos in enumerate(tuple(cap_map)):
             if val == pos:
