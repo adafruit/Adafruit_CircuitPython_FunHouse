@@ -215,7 +215,7 @@ class Peripherals:
         Return the temperature in degrees Celcius
         """
         return self._aht20.temperature
-        
+
     @property
     def relative_humidity(self):
         """
