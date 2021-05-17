@@ -212,7 +212,7 @@ class Peripherals:
     @property
     def temperature(self):
         """
-        Return the temperature in degrees Celcius
+        Return the temperature in degrees Celsius
         """
         return self._aht20.temperature
 
