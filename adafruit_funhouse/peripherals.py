@@ -179,15 +179,11 @@ class Peripherals:
         Return the slider position value in the range of 0.0-1.0 or None if not touched
         """
         val = 0
-        cap_map = b"\x01\x03\x02\x06\x04\x0c\x08\x18\x10"
+        cap_map = (0x01, 0x03, 0x02, 0x06, 0x04, 0x0c, 0x08, 0x18, 0x10)
         for cap in range(5):
             if self._ctp[cap + 3].value:
                 val += 1 << (cap)
-        for i, pos in enumerate(tuple(cap_map)):
-            if val == pos:
-                print(i, len(cap_map) - 1)
-                return round(i / (len(cap_map) - 1), 1)
-        return None
+        return cap_map.index(val) / 8 if val in cap_map else None
 
     @property
     def light(self):
