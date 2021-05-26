@@ -179,7 +179,7 @@ class Peripherals:
         Return the slider position value in the range of 0.0-1.0 or None if not touched
         """
         val = 0
-        cap_map = (0x01, 0x03, 0x02, 0x06, 0x04, 0x0c, 0x08, 0x18, 0x10)
+        cap_map = (0x01, 0x03, 0x02, 0x06, 0x04, 0x0C, 0x08, 0x18, 0x10)
         for cap in range(5):
             if self._ctp[cap + 3].value:
                 val += 1 << (cap)
