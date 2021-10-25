@@ -139,6 +139,11 @@ Usage Example
         set_label_color(sensors[2].value, jst3_label, 0xFFFFFF)
 
 
+Documentation
+=============
+
+API documentation for this library can be found on `Read the Docs <https://circuitpython.readthedocs.io/projects/funhouse/en/latest/>`_.
+
 Contributing
 ============
 
