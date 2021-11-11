@@ -91,7 +91,7 @@ class Network(NetworkBase):
         username: str = None,
         password: str = None,
         use_io: bool = False,
-    ) -> Union[MQTT, IO_MQTT]:
+    ) -> Union[MQTT.MQTT, IO_MQTT]:
         """Initialize MQTT"""
         self.connect()
         self._mqtt_client = MQTT.MQTT(
@@ -109,7 +109,7 @@ class Network(NetworkBase):
 
     # pylint: enable=too-many-arguments
 
-    def _get_mqtt_client(self) -> Union[MQTT, IO_MQTT]:
+    def _get_mqtt_client(self) -> Union[MQTT.MQTT, IO_MQTT]:
         if self._mqtt_client is not None:
             return self._mqtt_client
         raise RuntimeError("Please initialize MQTT before using")
