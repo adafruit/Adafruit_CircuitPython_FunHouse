@@ -34,7 +34,7 @@ from adafruit_portalbase.network import NetworkBase
 from adafruit_portalbase.wifi_esp32s2 import WiFi
 
 try:
-    from typing import Optional, Union
+    from typing import Optional, Union, Callable
     from adafruit_dotstar import DotStar
 except ImportError:
     pass
@@ -166,7 +166,7 @@ class Network(NetworkBase):
         return None
 
     @on_mqtt_connect.setter
-    def on_mqtt_connect(self, value: function):
+    def on_mqtt_connect(self, value: Callable):
         self._get_mqtt_client()
         self._mqtt_client.on_connect = value
 
@@ -181,7 +181,7 @@ class Network(NetworkBase):
         return None
 
     @on_mqtt_disconnect.setter
-    def on_mqtt_disconnect(self, value: function):
+    def on_mqtt_disconnect(self, value: Callable):
         self._get_mqtt_client().on_disconnect = value
 
     @property
@@ -195,7 +195,7 @@ class Network(NetworkBase):
         return None
 
     @on_mqtt_subscribe.setter
-    def on_mqtt_subscribe(self, value: function):
+    def on_mqtt_subscribe(self, value: Callable):
         self._get_mqtt_client().on_subscribe = value
 
     @property
@@ -209,7 +209,7 @@ class Network(NetworkBase):
         return None
 
     @on_mqtt_unsubscribe.setter
-    def on_mqtt_unsubscribe(self, value: function):
+    def on_mqtt_unsubscribe(self, value: Callable):
         self._get_mqtt_client().on_unsubscribe = value
 
     @property
@@ -223,7 +223,7 @@ class Network(NetworkBase):
         return None
 
     @on_mqtt_message.setter
-    def on_mqtt_message(self, value: function):
+    def on_mqtt_message(self, value: Callable):
         self._get_mqtt_client().on_message = value
 
     @property
