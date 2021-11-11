@@ -45,7 +45,14 @@ class Graphics(GraphicsBase):
     """
 
     # pylint: disable=too-many-instance-attributes, too-many-locals, too-many-branches, too-many-statements, too-few-public-methods
-    def __init__(self, *, default_bg: int = 0, rotation: int = 270, scale: int = 1, debug: bool = False):
+    def __init__(
+        self,
+        *,
+        default_bg: int = 0,
+        rotation: int = 270,
+        scale: int = 1,
+        debug: bool = False
+    ):
         self._debug = debug
         self.display = board.DISPLAY
         self.display.rotation = rotation

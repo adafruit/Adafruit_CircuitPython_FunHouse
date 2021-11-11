@@ -129,7 +129,12 @@ class Network(NetworkBase):
             if self._mqtt_client is not None:
                 self._mqtt_client.loop(*args, **kwargs)
 
-    def mqtt_publish(self, *args: Union[str, int, float], suppress_mqtt_errors: bool = True, **kwargs: Union[str, int, float]):
+    def mqtt_publish(
+        self,
+        *args: Union[str, int, float],
+        suppress_mqtt_errors: bool = True,
+        **kwargs: Union[str, int, float]
+    ):
         """Publish to MQTT"""
         self._get_mqtt_client()
         if suppress_mqtt_errors:
@@ -142,7 +147,9 @@ class Network(NetworkBase):
             if self._mqtt_client is not None:
                 self._mqtt_client.publish(*args, **kwargs)
 
-    def mqtt_connect(self, *args: Union[bool, str, int], **kwargs: Union[bool, str, int]):
+    def mqtt_connect(
+        self, *args: Union[bool, str, int], **kwargs: Union[bool, str, int]
+    ):
         """Connect to MQTT"""
         self._get_mqtt_client()
         if self._mqtt_client is not None:
