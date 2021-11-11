@@ -12,3 +12,4 @@ adafruit-circuitpython-simpleio
 adafruit-circuitpython-minimqtt
 adafruit-circuitpython-dps310
 adafruit-circuitpython-ahtx0
+sphinx>=4.0.0
