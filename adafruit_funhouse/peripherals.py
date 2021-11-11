@@ -108,7 +108,7 @@ class Peripherals:
                 pass
             attempt += 1
 
-    def set_dotstars(self, *values):
+    def set_dotstars(self, *values: int):
         """Set the dotstar values to the provided values"""
         for i, value in enumerate(values[: len(self.dotstars)]):
             self.dotstars[i] = value
@@ -234,7 +234,7 @@ class Peripherals:
         return self._led.value
 
     @led.setter
-    def led(self, value):
+    def led(self, value: bool):
         self._led.value = bool(value)
 
     @property

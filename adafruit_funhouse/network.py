@@ -33,6 +33,12 @@ from adafruit_io.adafruit_io import IO_MQTT
 from adafruit_portalbase.network import NetworkBase
 from adafruit_portalbase.wifi_esp32s2 import WiFi
 
+try:
+    from typing import Optional, Union
+    from adafruit_dotstar import DotStar
+except ImportError:
+    pass
+
 __version__ = "0.0.0-auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FunHouse.git"
 
@@ -54,9 +60,9 @@ class Network(NetworkBase):
     def __init__(
         self,
         *,
-        status_dotstar=None,
-        extract_values=True,
-        debug=False,
+        status_dotstar: Optional[DotStar] = None,
+        extract_values: bool = True,
+        debug: bool = False,
     ):
         super().__init__(
             WiFi(status_led=status_dotstar),
@@ -65,7 +71,7 @@ class Network(NetworkBase):
         )
         self._mqtt_client = None
 
-    def init_io_mqtt(self):
+    def init_io_mqtt(self) -> IO_MQTT:
         """Initialize MQTT for Adafruit IO"""
         try:
             aio_username = self._secrets["aio_username"]
@@ -80,12 +86,12 @@ class Network(NetworkBase):
     # pylint: disable=too-many-arguments
     def init_mqtt(
         self,
-        broker,
-        port=8883,
-        username=None,
-        password=None,
-        use_io=False,
-    ):
+        broker: str,
+        port: int = 8883,
+        username: str = None,
+        password: str = None,
+        use_io: bool = False,
+    ) -> Union[MQTT, IO_MQTT]:
         """Initialize MQTT"""
         self.connect()
         self._mqtt_client = MQTT.MQTT(
@@ -103,12 +109,12 @@ class Network(NetworkBase):
 
     # pylint: enable=too-many-arguments
 
-    def _get_mqtt_client(self):
+    def _get_mqtt_client(self) -> Union[MQTT, IO_MQTT]:
         if self._mqtt_client is not None:
             return self._mqtt_client
         raise RuntimeError("Please initialize MQTT before using")
 
-    def mqtt_loop(self, *args, suppress_mqtt_errors=True, **kwargs):
+    def mqtt_loop(self, *args: int, suppress_mqtt_errors: bool = True, **kwargs: int):
         """Run the MQTT Loop"""
         self._get_mqtt_client()
         if suppress_mqtt_errors:
@@ -123,7 +129,7 @@ class Network(NetworkBase):
             if self._mqtt_client is not None:
                 self._mqtt_client.loop(*args, **kwargs)
 
-    def mqtt_publish(self, *args, suppress_mqtt_errors=True, **kwargs):
+    def mqtt_publish(self, *args: Union[str, int, float], suppress_mqtt_errors: bool = True, **kwargs: Union[str, int, float]):
         """Publish to MQTT"""
         self._get_mqtt_client()
         if suppress_mqtt_errors:
@@ -136,7 +142,7 @@ class Network(NetworkBase):
             if self._mqtt_client is not None:
                 self._mqtt_client.publish(*args, **kwargs)
 
-    def mqtt_connect(self, *args, **kwargs):
+    def mqtt_connect(self, *args: Union[bool, str, int], **kwargs: Union[bool, str, int]):
         """Connect to MQTT"""
         self._get_mqtt_client()
         if self._mqtt_client is not None:
@@ -153,7 +159,7 @@ class Network(NetworkBase):
         return None
 
     @on_mqtt_connect.setter
-    def on_mqtt_connect(self, value):
+    def on_mqtt_connect(self, value: function):
         self._get_mqtt_client()
         self._mqtt_client.on_connect = value
 
@@ -168,7 +174,7 @@ class Network(NetworkBase):
         return None
 
     @on_mqtt_disconnect.setter
-    def on_mqtt_disconnect(self, value):
+    def on_mqtt_disconnect(self, value: function):
         self._get_mqtt_client().on_disconnect = value
 
     @property
@@ -182,7 +188,7 @@ class Network(NetworkBase):
         return None
 
     @on_mqtt_subscribe.setter
-    def on_mqtt_subscribe(self, value):
+    def on_mqtt_subscribe(self, value: function):
         self._get_mqtt_client().on_subscribe = value
 
     @property
@@ -196,7 +202,7 @@ class Network(NetworkBase):
         return None
 
     @on_mqtt_unsubscribe.setter
-    def on_mqtt_unsubscribe(self, value):
+    def on_mqtt_unsubscribe(self, value: function):
         self._get_mqtt_client().on_unsubscribe = value
 
     @property
@@ -210,7 +216,7 @@ class Network(NetworkBase):
         return None
 
     @on_mqtt_message.setter
-    def on_mqtt_message(self, value):
+    def on_mqtt_message(self, value: function):
         self._get_mqtt_client().on_message = value
 
     @property
@@ -222,5 +228,5 @@ class Network(NetworkBase):
         return self._wifi.enabled
 
     @enabled.setter
-    def enabled(self, value):
+    def enabled(self, value: bool):
         self._wifi.enabled = bool(value)
