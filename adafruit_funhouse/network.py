@@ -114,7 +114,9 @@ class Network(NetworkBase):
             return self._mqtt_client
         raise RuntimeError("Please initialize MQTT before using")
 
-    def mqtt_loop(self, *args: int, suppress_mqtt_errors: bool = True, **kwargs: int) -> None:
+    def mqtt_loop(
+        self, *args: int, suppress_mqtt_errors: bool = True, **kwargs: int
+    ) -> None:
         """Run the MQTT Loop"""
         self._get_mqtt_client()
         if suppress_mqtt_errors:
