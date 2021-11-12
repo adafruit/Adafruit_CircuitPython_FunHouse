@@ -63,7 +63,7 @@ class Network(NetworkBase):
         status_dotstar: Optional[DotStar] = None,
         extract_values: bool = True,
         debug: bool = False,
-    ):
+    ) -> None:
         super().__init__(
             WiFi(status_led=status_dotstar),
             extract_values=extract_values,
@@ -114,7 +114,7 @@ class Network(NetworkBase):
             return self._mqtt_client
         raise RuntimeError("Please initialize MQTT before using")
 
-    def mqtt_loop(self, *args: int, suppress_mqtt_errors: bool = True, **kwargs: int):
+    def mqtt_loop(self, *args: int, suppress_mqtt_errors: bool = True, **kwargs: int) -> None:
         """Run the MQTT Loop"""
         self._get_mqtt_client()
         if suppress_mqtt_errors:
@@ -134,7 +134,7 @@ class Network(NetworkBase):
         *args: Union[str, int, float],
         suppress_mqtt_errors: bool = True,
         **kwargs: Union[str, int, float]
-    ):
+    ) -> None:
         """Publish to MQTT"""
         self._get_mqtt_client()
         if suppress_mqtt_errors:
@@ -149,14 +149,14 @@ class Network(NetworkBase):
 
     def mqtt_connect(
         self, *args: Union[bool, str, int], **kwargs: Union[bool, str, int]
-    ):
+    ) -> None:
         """Connect to MQTT"""
         self._get_mqtt_client()
         if self._mqtt_client is not None:
             self._mqtt_client.connect(*args, **kwargs)
 
     @property
-    def on_mqtt_connect(self):
+    def on_mqtt_connect(self) -> Optional[Callable]:
         """
         Get or Set the MQTT Connect Handler
 
@@ -166,12 +166,12 @@ class Network(NetworkBase):
         return None
 
     @on_mqtt_connect.setter
-    def on_mqtt_connect(self, value: Callable):
+    def on_mqtt_connect(self, value: Callable) -> None:
         self._get_mqtt_client()
         self._mqtt_client.on_connect = value
 
     @property
-    def on_mqtt_disconnect(self):
+    def on_mqtt_disconnect(self) -> Optional[Callable]:
         """
         Get or Set the MQTT Disconnect Handler
 
@@ -181,11 +181,11 @@ class Network(NetworkBase):
         return None
 
     @on_mqtt_disconnect.setter
-    def on_mqtt_disconnect(self, value: Callable):
+    def on_mqtt_disconnect(self, value: Callable) -> None:
         self._get_mqtt_client().on_disconnect = value
 
     @property
-    def on_mqtt_subscribe(self):
+    def on_mqtt_subscribe(self) -> Optional[Callable]:
         """
         Get or Set the MQTT Subscribe Handler
 
@@ -195,11 +195,11 @@ class Network(NetworkBase):
         return None
 
     @on_mqtt_subscribe.setter
-    def on_mqtt_subscribe(self, value: Callable):
+    def on_mqtt_subscribe(self, value: Callable) -> None:
         self._get_mqtt_client().on_subscribe = value
 
     @property
-    def on_mqtt_unsubscribe(self):
+    def on_mqtt_unsubscribe(self) -> Optional[Callable]:
         """
         Get or Set the MQTT Unsubscribe Handler
 
@@ -209,11 +209,11 @@ class Network(NetworkBase):
         return None
 
     @on_mqtt_unsubscribe.setter
-    def on_mqtt_unsubscribe(self, value: Callable):
+    def on_mqtt_unsubscribe(self, value: Callable) -> None:
         self._get_mqtt_client().on_unsubscribe = value
 
     @property
-    def on_mqtt_message(self):
+    def on_mqtt_message(self) -> Optional[Callable]:
         """
         Get or Set the MQTT Message Handler
 
@@ -223,11 +223,11 @@ class Network(NetworkBase):
         return None
 
     @on_mqtt_message.setter
-    def on_mqtt_message(self, value: Callable):
+    def on_mqtt_message(self, value: Callable) -> None:
         self._get_mqtt_client().on_message = value
 
     @property
-    def enabled(self):
+    def enabled(self) -> bool:
         """
         Get or Set whether the WiFi is enabled
 
@@ -235,5 +235,5 @@ class Network(NetworkBase):
         return self._wifi.enabled
 
     @enabled.setter
-    def enabled(self, value: bool):
+    def enabled(self, value: bool) -> None:
         self._wifi.enabled = bool(value)

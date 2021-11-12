@@ -27,6 +27,7 @@ Implementation Notes
 
 """
 
+from typing import Optional
 import board
 from digitalio import DigitalInOut, Direction, Pull
 from analogio import AnalogIn
@@ -44,7 +45,7 @@ class Peripherals:
     """Peripherals Helper Class for the FunHouse Library"""
 
     # pylint: disable=too-many-instance-attributes, too-many-locals, too-many-branches, too-many-statements
-    def __init__(self):
+    def __init__(self) -> None:
         # Dotstars
         self.dotstars = adafruit_dotstar.DotStar(
             board.DOTSTAR_CLOCK, board.DOTSTAR_DATA, 5, brightness=0.3
@@ -90,7 +91,7 @@ class Peripherals:
         self._pir.direction = Direction.INPUT
 
     @staticmethod
-    def play_tone(frequency, duration):
+    def play_tone(frequency: float, duration: float) -> None:
         """Automatically Enable/Disable the speaker and play
         a tone at the specified frequency for the specified duration
         It will attempt to play the sound up to 3 times in the case of
@@ -108,12 +109,12 @@ class Peripherals:
                 pass
             attempt += 1
 
-    def set_dotstars(self, *values: int):
+    def set_dotstars(self, *values: int) -> None:
         """Set the dotstar values to the provided values"""
         for i, value in enumerate(values[: len(self.dotstars)]):
             self.dotstars[i] = value
 
-    def deinit(self):
+    def deinit(self) -> None:
         """Call deinit on all resources to free them"""
         self.dotstars.deinit()
         for button in self._buttons:
@@ -125,56 +126,56 @@ class Peripherals:
         self._pir.deinit()
 
     @property
-    def button_down(self):
+    def button_down(self) -> bool:
         """
         Return whether Down Button is pressed
         """
         return self._buttons[0].value
 
     @property
-    def button_sel(self):
+    def button_sel(self) -> bool:
         """
         Return whether Sel Button is pressed
         """
         return self._buttons[1].value
 
     @property
-    def button_up(self):
+    def button_up(self) -> bool:
         """
         Return whether Up Button is pressed
         """
         return self._buttons[2].value
 
     @property
-    def any_button_pressed(self):
+    def any_button_pressed(self) -> bool:
         """
         Return whether any button is pressed
         """
         return True in [button.value for button in enumerate(self._buttons)]
 
     @property
-    def captouch6(self):
+    def captouch6(self) -> bool:
         """
         Return whether CT6 Touch Pad is touched
         """
         return self._ctp[0].value
 
     @property
-    def captouch7(self):
+    def captouch7(self) -> bool:
         """
         Return whether CT7 Touch Pad is touched
         """
         return self._ctp[1].value
 
     @property
-    def captouch8(self):
+    def captouch8(self) -> bool:
         """
         Return whether CT8 Touch Pad is touched
         """
         return self._ctp[2].value
 
     @property
-    def slider(self):
+    def slider(self) -> Optional[float]:
         """
         Return the slider position value in the range of 0.0-1.0 or None if not touched
         """
@@ -186,7 +187,7 @@ class Peripherals:
         return cap_map.index(val) / 8 if val in cap_map else None
 
     @property
-    def light(self):
+    def light(self) -> int:
         """
         Return the value of the light sensor. The neopixel_disable property
         must be false to get a value.
@@ -206,39 +207,39 @@ class Peripherals:
         return self._light.value
 
     @property
-    def temperature(self):
+    def temperature(self) -> float:
         """
         Return the temperature in degrees Celsius
         """
         return self._aht20.temperature
 
     @property
-    def relative_humidity(self):
+    def relative_humidity(self) -> float:
         """
         Return the relative humidity as a percentage (0 - 100)
         """
         return self._aht20.relative_humidity
 
     @property
-    def pressure(self):
+    def pressure(self) -> float:
         """
         Return the barometric pressure in hPa, or equivalently in mBar
         """
         return self._dps310.pressure
 
     @property
-    def led(self):
+    def led(self) -> bool:
         """
         Return or set the value of the LED
         """
         return self._led.value
 
     @led.setter
-    def led(self, value: bool):
+    def led(self, value: bool) -> None:
         self._led.value = bool(value)
 
     @property
-    def pir_sensor(self):
+    def pir_sensor(self) -> bool:
         """
         Return the value of the PIR Sensor
         """

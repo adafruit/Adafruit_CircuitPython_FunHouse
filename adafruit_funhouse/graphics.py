@@ -52,7 +52,7 @@ class Graphics(GraphicsBase):
         rotation: int = 270,
         scale: int = 1,
         debug: bool = False
-    ):
+    ) -> None:
         self._debug = debug
         self.display = board.DISPLAY
         self.display.rotation = rotation

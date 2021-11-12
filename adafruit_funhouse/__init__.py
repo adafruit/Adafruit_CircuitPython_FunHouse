@@ -34,6 +34,12 @@ from adafruit_funhouse.network import Network
 from adafruit_funhouse.graphics import Graphics
 from adafruit_funhouse.peripherals import Peripherals
 
+try:
+    from typing import Optional, Dict, Union, Callable, Sequence, List
+    from adafruit_dotstar import DotStar
+except ImportError:
+    pass
+
 __version__ = "0.0.0-auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FunHouse.git"
 
@@ -65,17 +71,17 @@ class FunHouse(PortalBase):
     def __init__(
         self,
         *,
-        url=None,
-        headers=None,
-        json_path=None,
-        regexp_path=None,
-        default_bg=0,
-        status_dotstar=None,
-        json_transform=None,
-        rotation=270,
-        scale=1,
-        debug=False,
-    ):
+        url: Optional[str] = None,
+        headers: Dict[str, str] = None,
+        json_path: Optional[Union[List[str], List[List[str]]]] = None,
+        regexp_path: Optional[Sequence[str]] = None,
+        default_bg: int = 0,
+        status_dotstar: Optional[DotStar] = None,
+        json_transform: Optional[Union[Callable, List[Callable]]] = None,
+        rotation: int = 270,
+        scale: int = 1,
+        debug: bool = False,
+    ) -> None:
 
         network = Network(
             status_dotstar=status_dotstar,
@@ -105,7 +111,7 @@ class FunHouse(PortalBase):
 
         gc.collect()
 
-    def enter_light_sleep(self, sleep_time):
+    def enter_light_sleep(self, sleep_time: float) -> None:
         """
         Enter light sleep and resume the program after a certain period of time.
 
