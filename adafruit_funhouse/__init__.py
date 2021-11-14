@@ -72,7 +72,7 @@ class FunHouse(PortalBase):
         self,
         *,
         url: Optional[str] = None,
-        headers: Dict[str, str] = None,
+        headers: Optional[Dict[str, str]] = None,
         json_path: Optional[Union[List[str], List[List[str]]]] = None,
         regexp_path: Optional[Sequence[str]] = None,
         default_bg: int = 0,
