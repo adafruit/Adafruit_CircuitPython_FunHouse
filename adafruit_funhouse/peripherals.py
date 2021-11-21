@@ -27,7 +27,6 @@ Implementation Notes
 
 """
 
-from typing import Optional
 import board
 from digitalio import DigitalInOut, Direction, Pull
 from analogio import AnalogIn
@@ -36,6 +35,11 @@ import simpleio
 import adafruit_dps310
 import adafruit_ahtx0
 import adafruit_dotstar
+
+try:
+    from typing import Optional
+except ImportError:
+    pass
 
 __version__ = "0.0.0-auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FunHouse.git"
