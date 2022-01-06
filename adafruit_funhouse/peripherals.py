@@ -118,6 +118,13 @@ class Peripherals:
         for i, value in enumerate(values[: len(self.dotstars)]):
             self.dotstars[i] = value
 
+            
+    def set_all_dotstars(self, color: int) -> None:
+        """Set all the dotstars values the same color value"""
+        all_colous = [color] * len(self.dotstars)
+        funhouse.peripherals.set_dotstars(*all_colors)
+
+        
     def deinit(self) -> None:
         """Call deinit on all resources to free them"""
         self.dotstars.deinit()
