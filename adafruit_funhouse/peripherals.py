@@ -122,7 +122,7 @@ class Peripherals:
     def set_all_dotstars(self, color: int) -> None:
         """Set all the dotstars values the same color value"""
         all_colors = [color] * len(self.dotstars)
-        funhouse.peripherals.set_dotstars(*all_colors)
+        self.set_dotstars(*all_colors)
 
         
     def deinit(self) -> None:
