@@ -32,7 +32,7 @@ from digitalio import DigitalInOut, Direction, Pull
 from analogio import AnalogIn
 import touchio
 import simpleio
-import adafruit_dps310
+import adafruit_dps310.advanced
 import adafruit_ahtx0
 import adafruit_dotstar
 
@@ -83,7 +83,7 @@ class Peripherals:
             self._ctp.append(cap)
 
         self.i2c = board.I2C()
-        self._dps310 = adafruit_dps310.DPS310(self.i2c)
+        self._dps310 = adafruit_dps310.advanced.DPS310(self.i2c)
         self._aht20 = adafruit_ahtx0.AHTx0(self.i2c)
 
         # LED
