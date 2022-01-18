@@ -46,7 +46,13 @@ __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_FunHouse.git"
 
 
 class Peripherals:
-    """Peripherals Helper Class for the FunHouse Library"""
+    """Peripherals Helper Class for the FunHouse Library
+
+
+    Attributes:
+        dotstars (DotStar): The DotStars on the FunHouse board.
+            See https://circuitpython.readthedocs.io/projects/dotstar/en/latest/api.html
+    """
 
     # pylint: disable=too-many-instance-attributes, too-many-locals, too-many-branches, too-many-statements
     def __init__(self) -> None:
