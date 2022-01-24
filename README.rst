@@ -3,7 +3,7 @@ Introduction
 
 
 .. image:: https://readthedocs.org/projects/adafruit-circuitpython-funhouse/badge/?version=latest
-    :target: https://circuitpython.readthedocs.io/projects/funhouse/en/latest/
+    :target: https://docs.circuitpython.org/projects/funhouse/en/latest/
     :alt: Documentation Status
 
 
@@ -142,7 +142,7 @@ Usage Example
 Documentation
 =============
 
-API documentation for this library can be found on `Read the Docs <https://circuitpython.readthedocs.io/projects/funhouse/en/latest/>`_.
+API documentation for this library can be found on `Read the Docs <https://docs.circuitpython.org/projects/funhouse/en/latest/>`_.
 
 Contributing
 ============

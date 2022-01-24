@@ -38,7 +38,7 @@ autodoc_mock_imports = [
 
 intersphinx_mapping = {
     "python": ("https://docs.python.org/3.8", None),
-    "CircuitPython": ("https://circuitpython.readthedocs.io/en/latest/", None),
+    "CircuitPython": ("https://docs.circuitpython.org/en/latest/", None),
 }
 
 # Show the docstring from both the class and its __init__() method.
