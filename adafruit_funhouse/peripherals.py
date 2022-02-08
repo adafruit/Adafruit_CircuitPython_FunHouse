@@ -161,7 +161,7 @@ class Peripherals:
         """
         Return whether any button is pressed
         """
-        return True in [button.value for button in enumerate(self._buttons)]
+        return True in [button.value for (i, button) in enumerate(self._buttons)]
 
     @property
     def captouch6(self) -> bool:
