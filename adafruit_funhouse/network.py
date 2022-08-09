@@ -135,7 +135,7 @@ class Network(NetworkBase):
         self,
         *args: Union[str, int, float],
         suppress_mqtt_errors: bool = True,
-        **kwargs: Union[str, int, float]
+        **kwargs: Union[str, int, float],
     ) -> None:
         """Publish to MQTT"""
         self._get_mqtt_client()
