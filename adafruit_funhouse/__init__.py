@@ -82,7 +82,6 @@ class FunHouse(PortalBase):
         scale: int = 1,
         debug: bool = False,
     ) -> None:
-
         network = Network(
             status_dotstar=status_dotstar,
             extract_values=False,

@@ -8,6 +8,7 @@ from adafruit_funhouse import FunHouse
 funhouse = FunHouse(default_bg=None)
 funhouse.peripherals.set_dotstars(0x800000, 0x808000, 0x008000, 0x000080, 0x800080)
 
+
 # pylint: disable=unused-argument
 def connected(client):
     print("Connected to Adafruit IO! Subscribing...")
