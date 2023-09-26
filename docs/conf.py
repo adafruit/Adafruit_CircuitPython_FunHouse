@@ -36,6 +36,7 @@ autodoc_mock_imports = [
     "secrets",
     "analogio",
     "touchio",
+    "bitmaptools",
 ]
 
 intersphinx_mapping = {
