@@ -30,7 +30,7 @@ def set_label_color(conditional, index, on_color):
 
 
 # Create the labels
-funhouse.display.show(None)
+funhouse.display.root_group = None
 slider_label = funhouse.add_text(
     text="Slider:", text_position=(50, 30), text_color=0x606060
 )
@@ -62,7 +62,7 @@ temp_label = funhouse.add_text(
 pres_label = funhouse.add_text(
     text="Pres:", text_position=(50, 60), text_color=0xFF00FF
 )
-funhouse.display.show(funhouse.splash)
+funhouse.display.root_group = funhouse.splash
 
 while True:
     funhouse.set_text("Temp %0.1F" % funhouse.peripherals.temperature, temp_label)
