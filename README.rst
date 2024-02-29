@@ -29,8 +29,8 @@ Dependencies
 This driver depends on:
 
 * `Adafruit CircuitPython <https://github.com/adafruit/circuitpython>`_
-* `Adafruit CircuitPython Connection Manager <https://github.com/adafruit/Adafruit_CircuitPython_ConnectionManager/>`_
 * `Adafruit CircuitPython AHTx0 <https://github.com/adafruit/Adafruit_CircuitPython_AHTx0/>`_
+* `Adafruit CircuitPython Connection Manager <https://github.com/adafruit/Adafruit_CircuitPython_ConnectionManager/>`_
 * `Adafruit CircuitPython DotStar <https://github.com/adafruit/Adafruit_CircuitPython_DotStar/>`_
 * `Adafruit CircuitPython DPS310 <https://github.com/adafruit/Adafruit_CircuitPython_DPS310/>`_
 * `Adafruit CircuitPython MiniMQTT <https://github.com/adafruit/Adafruit_CircuitPython_MiniMQTT/>`_
