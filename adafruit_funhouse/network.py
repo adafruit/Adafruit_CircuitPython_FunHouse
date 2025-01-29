@@ -74,11 +74,11 @@ class Network(NetworkBase):
     def init_io_mqtt(self) -> IO_MQTT:
         """Initialize MQTT for Adafruit IO"""
         try:
-            aio_username = self._secrets["aio_username"]
-            aio_key = self._secrets["aio_key"]
+            aio_username = self._get_setting("AIO_USERNAME")
+            aio_key = self._get_setting("AIO_KEY")
         except KeyError:
             raise KeyError(
-                "Adafruit IO secrets are kept in secrets.py, please add them there!\n\n"
+                "Adafruit IO secrets are kept in settings.toml, please add them there!\n\n"
             ) from KeyError
 
         return self.init_mqtt(IO_MQTT_BROKER, 8883, aio_username, aio_key, True)
