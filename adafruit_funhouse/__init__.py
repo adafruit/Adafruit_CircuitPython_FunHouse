@@ -29,13 +29,16 @@ Implementation Notes
 
 import gc
 import time
+
 from adafruit_portalbase import PortalBase
-from adafruit_funhouse.network import Network
+
 from adafruit_funhouse.graphics import Graphics
+from adafruit_funhouse.network import Network
 from adafruit_funhouse.peripherals import Peripherals
 
 try:
-    from typing import Optional, Dict, Union, Callable, Sequence, List
+    from typing import Callable, Dict, List, Optional, Sequence, Union
+
     from adafruit_dotstar import DotStar
 except ImportError:
     pass
@@ -67,7 +70,6 @@ class FunHouse(PortalBase):
 
     """
 
-    # pylint: disable=too-many-instance-attributes, too-many-locals, too-many-branches, too-many-statements
     def __init__(
         self,
         *,

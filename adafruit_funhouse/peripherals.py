@@ -27,14 +27,14 @@ Implementation Notes
 
 """
 
-import board
-from digitalio import DigitalInOut, Direction, Pull
-from analogio import AnalogIn
-import touchio
-import simpleio
-import adafruit_dps310
 import adafruit_ahtx0
 import adafruit_dotstar
+import adafruit_dps310
+import board
+import simpleio
+import touchio
+from analogio import AnalogIn
+from digitalio import DigitalInOut, Direction, Pull
 
 try:
     from typing import Optional
@@ -54,7 +54,6 @@ class Peripherals:
             See https://circuitpython.readthedocs.io/projects/dotstar/en/latest/api.html
     """
 
-    # pylint: disable=too-many-instance-attributes, too-many-locals, too-many-branches, too-many-statements
     def __init__(self) -> None:
         # Dotstars
         self.dotstars = adafruit_dotstar.DotStar(

@@ -3,13 +3,13 @@
 #
 # SPDX-License-Identifier: MIT
 import time
+
 from adafruit_funhouse import FunHouse
 
 funhouse = FunHouse(default_bg=None)
 funhouse.peripherals.set_dotstars(0x800000, 0x808000, 0x008000, 0x000080, 0x800080)
 
 
-# pylint: disable=unused-argument
 def connected(client):
     print("Connected to Adafruit IO! Subscribing...")
     client.subscribe("buzzer")
@@ -17,7 +17,7 @@ def connected(client):
 
 
 def subscribe(client, userdata, topic, granted_qos):
-    print("Subscribed to {0} with QOS level {1}".format(topic, granted_qos))
+    print(f"Subscribed to {topic} with QOS level {granted_qos}")
 
 
 def disconnected(client):
@@ -25,7 +25,7 @@ def disconnected(client):
 
 
 def message(client, feed_id, payload):
-    print("Feed {0} received new value: {1}".format(feed_id, payload))
+    print(f"Feed {feed_id} received new value: {payload}")
     if feed_id == "buzzer":
         if int(payload) == 1:
             funhouse.peripherals.play_tone(2000, 0.25)
@@ -34,8 +34,6 @@ def message(client, feed_id, payload):
         color = int(payload[1:], 16)
         funhouse.peripherals.dotstars.fill(color)
 
-
-# pylint: enable=unused-argument
 
 # Initialize a new MQTT Client object
 funhouse.network.init_io_mqtt()
@@ -60,9 +58,7 @@ while True:
         funhouse.peripherals.led = True
         print("Sending data to adafruit IO!")
         funhouse.network.mqtt_publish("temperature", funhouse.peripherals.temperature)
-        funhouse.network.mqtt_publish(
-            "humidity", int(funhouse.peripherals.relative_humidity)
-        )
+        funhouse.network.mqtt_publish("humidity", int(funhouse.peripherals.relative_humidity))
         funhouse.network.mqtt_publish("pressure", int(funhouse.peripherals.pressure))
         sensorwrite_timestamp = time.monotonic()
         # Send PIR only if changed!
