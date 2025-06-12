@@ -4,6 +4,7 @@
 # SPDX-License-Identifier: Unlicense
 import board
 from digitalio import DigitalInOut, Direction, Pull
+
 from adafruit_funhouse import FunHouse
 
 funhouse = FunHouse(
@@ -31,37 +32,19 @@ def set_label_color(conditional, index, on_color):
 
 # Create the labels
 funhouse.display.root_group = None
-slider_label = funhouse.add_text(
-    text="Slider:", text_position=(50, 30), text_color=0x606060
-)
-capright_label = funhouse.add_text(
-    text="Touch", text_position=(85, 10), text_color=0x606060
-)
+slider_label = funhouse.add_text(text="Slider:", text_position=(50, 30), text_color=0x606060)
+capright_label = funhouse.add_text(text="Touch", text_position=(85, 10), text_color=0x606060)
 pir_label = funhouse.add_text(text="PIR", text_position=(60, 10), text_color=0x606060)
-capleft_label = funhouse.add_text(
-    text="Touch", text_position=(25, 10), text_color=0x606060
-)
+capleft_label = funhouse.add_text(text="Touch", text_position=(25, 10), text_color=0x606060)
 onoff_label = funhouse.add_text(text="OFF", text_position=(10, 25), text_color=0x606060)
 up_label = funhouse.add_text(text="UP", text_position=(10, 10), text_color=0x606060)
 sel_label = funhouse.add_text(text="SEL", text_position=(10, 60), text_color=0x606060)
-down_label = funhouse.add_text(
-    text="DOWN", text_position=(10, 100), text_color=0x606060
-)
-jst1_label = funhouse.add_text(
-    text="SENSOR 1", text_position=(40, 80), text_color=0x606060
-)
-jst2_label = funhouse.add_text(
-    text="SENSOR 2", text_position=(40, 95), text_color=0x606060
-)
-jst3_label = funhouse.add_text(
-    text="SENSOR 3", text_position=(40, 110), text_color=0x606060
-)
-temp_label = funhouse.add_text(
-    text="Temp:", text_position=(50, 45), text_color=0xFF00FF
-)
-pres_label = funhouse.add_text(
-    text="Pres:", text_position=(50, 60), text_color=0xFF00FF
-)
+down_label = funhouse.add_text(text="DOWN", text_position=(10, 100), text_color=0x606060)
+jst1_label = funhouse.add_text(text="SENSOR 1", text_position=(40, 80), text_color=0x606060)
+jst2_label = funhouse.add_text(text="SENSOR 2", text_position=(40, 95), text_color=0x606060)
+jst3_label = funhouse.add_text(text="SENSOR 3", text_position=(40, 110), text_color=0x606060)
+temp_label = funhouse.add_text(text="Temp:", text_position=(50, 45), text_color=0xFF00FF)
+pres_label = funhouse.add_text(text="Pres:", text_position=(50, 60), text_color=0xFF00FF)
 funhouse.display.root_group = funhouse.root_group
 
 while True:

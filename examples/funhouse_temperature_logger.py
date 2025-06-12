@@ -16,9 +16,7 @@ funhouse = FunHouse(default_bg=None)
 
 DELAY = 180
 FEED = "temperature"
-TEMPERATURE_OFFSET = (
-    3  # Degrees C to adjust the temperature to compensate for board produced heat
-)
+TEMPERATURE_OFFSET = 3  # Degrees C to adjust the temperature to compensate for board produced heat
 
 # Turn things off
 funhouse.peripherals.dotstars.fill(0)
@@ -41,5 +39,5 @@ def log_data():
 
 while True:
     log_data()
-    print("Sleeping for {} seconds...".format(DELAY))
+    print(f"Sleeping for {DELAY} seconds...")
     funhouse.enter_light_sleep(DELAY)
