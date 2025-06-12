@@ -120,7 +120,7 @@ Usage Example
     pres_label = funhouse.add_text(
         text="Pres:", text_position=(50, 60), text_color=0xFF00FF
     )
-    funhouse.display.root_group = funhouse.splash
+    funhouse.display.root_group = funhouse.root_group
 
     while True:
         funhouse.set_text("Temp %0.1F" % dps310.temperature, temp_label)
