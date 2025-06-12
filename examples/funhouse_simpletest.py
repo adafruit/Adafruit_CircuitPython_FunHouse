@@ -45,7 +45,7 @@ jst2_label = funhouse.add_text(text="SENSOR 2", text_position=(40, 95), text_col
 jst3_label = funhouse.add_text(text="SENSOR 3", text_position=(40, 110), text_color=0x606060)
 temp_label = funhouse.add_text(text="Temp:", text_position=(50, 45), text_color=0xFF00FF)
 pres_label = funhouse.add_text(text="Pres:", text_position=(50, 60), text_color=0xFF00FF)
-funhouse.display.root_group = funhouse.splash
+funhouse.display.root_group = funhouse.root_group
 
 while True:
     funhouse.set_text("Temp %0.1F" % funhouse.peripherals.temperature, temp_label)
