@@ -48,8 +48,8 @@ pres_label = funhouse.add_text(text="Pres:", text_position=(50, 60), text_color=
 funhouse.display.root_group = funhouse.root_group
 
 while True:
-    funhouse.set_text("Temp %0.1F" % funhouse.peripherals.temperature, temp_label)
-    funhouse.set_text("Pres %d" % funhouse.peripherals.pressure, pres_label)
+    funhouse.set_text(f"Temp {funhouse.peripherals.temperature:0.1F}", temp_label)
+    funhouse.set_text(f"Pres {funhouse.peripherals.pressure:d}", pres_label)
 
     print(funhouse.peripherals.temperature, funhouse.peripherals.relative_humidity)
     set_label_color(funhouse.peripherals.captouch6, onoff_label, 0x00FF00)
@@ -59,7 +59,7 @@ while True:
     slider = funhouse.peripherals.slider
     if slider is not None:
         funhouse.peripherals.dotstars.brightness = slider
-        funhouse.set_text("Slider: %1.1f" % slider, slider_label)
+        funhouse.set_text(f"Slider: {slider:1.1f}", slider_label)
     set_label_color(slider is not None, slider_label, 0xFFFF00)
 
     set_label_color(funhouse.peripherals.button_up, up_label, 0xFF0000)

@@ -50,8 +50,8 @@ last_pir = None
 while True:
     funhouse.network.mqtt_loop()
 
-    print("Temp %0.1F" % funhouse.peripherals.temperature)
-    print("Pres %d" % funhouse.peripherals.pressure)
+    print(f"Temp {funhouse.peripherals.temperature:0.1F}")
+    print(f"Pres {funhouse.peripherals.pressure:d}")
 
     # every 10 seconds, write temp/hum/press
     if (time.monotonic() - sensorwrite_timestamp) > 10:
@@ -64,5 +64,5 @@ while True:
         # Send PIR only if changed!
         if last_pir is None or last_pir != funhouse.peripherals.pir_sensor:
             last_pir = funhouse.peripherals.pir_sensor
-            funhouse.network.mqtt_publish("pir", "%d" % last_pir)
+            funhouse.network.mqtt_publish("pir", f"{last_pir:d}")
         funhouse.peripherals.led = False
