@@ -49,7 +49,7 @@ funhouse.display.root_group = funhouse.root_group
 
 while True:
     funhouse.set_text(f"Temp {funhouse.peripherals.temperature:0.1F}", temp_label)
-    funhouse.set_text(f"Pres {funhouse.peripherals.pressure:d}", pres_label)
+    funhouse.set_text(f"Pres {funhouse.peripherals.pressure:0.1F}", pres_label)
 
     print(funhouse.peripherals.temperature, funhouse.peripherals.relative_humidity)
     set_label_color(funhouse.peripherals.captouch6, onoff_label, 0x00FF00)
